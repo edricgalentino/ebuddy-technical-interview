@@ -1,17 +1,17 @@
-import { Router } from "express";
-import { getUserData, updateUserData } from "../controller/api";
+import { Router, RequestHandler } from "express";
+import { getUserData, updateUserData, createUser, getPotentialUsers } from "../controller/api";
 import { authMiddleware } from "../middleware/authMiddleware";
 
 const router = Router();
 
-// Apply auth middleware to all routes
-router.use(authMiddleware);
+// User creation route - no auth required because the user is being created
+router.post("/create", createUser);
 
-// Endpoint to fetch user data
-router.get("/", getUserData);
-router.get("/:id", getUserData);
-
-// Endpoint to update user data
-router.put("/:id", updateUserData);
+// Protected routes - require authentication
+router.use(authMiddleware as RequestHandler);
+router.get("/fetch-user-data", getUserData); // Get all users
+router.get("/fetch-user-data/:id", getUserData); // Get user by ID
+router.get("/potential-users", getPotentialUsers); // Get users ranked by potential score
+router.put("/update-user-data/:id", updateUserData);
 
 export default router;

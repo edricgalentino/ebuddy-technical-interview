@@ -1,18 +1,4 @@
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  createdAt: string;
-  updatedAt: string;
-  // Add additional fields as needed
-}
+import type { User, CreateUserDTO, UpdateUserDTO } from "@ebuddy/shared-types";
 
-export interface CreateUserDTO {
-  name: string;
-  email: string;
-}
-
-export interface UpdateUserDTO {
-  name?: string;
-  email?: string;
-}
+// Re-export the types
+export type { User, CreateUserDTO, UpdateUserDTO };

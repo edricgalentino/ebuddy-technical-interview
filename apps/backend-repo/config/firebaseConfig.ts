@@ -1,8 +1,10 @@
+// @ts-ignore
 import * as admin from "firebase-admin";
 import * as dotenv from "dotenv";
 
 dotenv.config();
 
+// init firebase admin
 if (!admin.apps.length) {
   try {
     admin.initializeApp({

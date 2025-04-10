@@ -18,19 +18,13 @@ export const authMiddleware = async (req: AuthRequest, res: Response, next: Next
 
     const token = authHeader.split("Bearer ")[1];
 
-    // For simplicity in this example, we'll do a basic check
-    // In a real application, you would verify the token with Firebase
     if (!token || token.trim() === "") {
       return res.status(401).json({ error: "Unauthorized - Invalid token" });
     }
 
     try {
-      // Uncomment this in a real application to verify the token with Firebase
-      // const decodedToken = await admin.auth().verifyIdToken(token);
-      // req.user = { uid: decodedToken.uid, email: decodedToken.email };
-
-      // For this example, we'll just mock the user
-      req.user = { uid: "sample-user-id", email: "user@example.com" };
+      const decodedToken = await admin.auth().verifyIdToken(token);
+      req.user = { uid: decodedToken.uid, email: decodedToken.email };
 
       next();
     } catch (error) {
