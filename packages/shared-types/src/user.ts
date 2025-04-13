@@ -11,6 +11,7 @@ export interface User {
   numberOfRents: number;
   recentlyActive: number;
   potentialScore?: number;
+  status?: "online" | "offline" | "away";
 }
 
 /**
@@ -23,6 +24,7 @@ export interface CreateUserDTO {
   totalAverageWeightRatings?: number;
   numberOfRents?: number;
   recentlyActive?: number;
+  status?: "online" | "offline" | "away";
 }
 
 /**
@@ -34,4 +36,5 @@ export interface UpdateUserDTO {
   totalAverageWeightRatings?: number;
   numberOfRents?: number;
   recentlyActive?: number;
+  status?: "online" | "offline" | "away";
 }
